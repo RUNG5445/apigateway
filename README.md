@@ -1,6 +1,6 @@
 # คู่มือการใช้งาน API
 
-URL หลัก: http://rung.ddns.net:8088
+URL หลัก: http://rung.ddns.net:8050
 
 ## 1. หน้าแรก (API Portal)
 - API Endpoint: /
@@ -9,7 +9,7 @@ URL หลัก: http://rung.ddns.net:8088
 
 ตัวอย่างการร้องขอ:
 ```http 
-GET http://rung.ddns.net:8088/
+GET http://rung.ddns.net:8050/
 ```
 
 ตัวอย่างการตอบกลับ:
@@ -23,9 +23,10 @@ GET http://rung.ddns.net:8088/
 
 ตัวอย่างการร้องขอ:
 ```http 
-POST http://rung.ddns.net:8088/api/data
+POST http://rung.ddns.net:8050/api/data
 ```
 ข้อมูลที่ต้องใช้สำหรับการร้องขอ:
+```json
 {
   "nodename": "Node1",
   "temperature": 25.5,
@@ -33,7 +34,7 @@ POST http://rung.ddns.net:8088/api/data
   "latitude": 12.345,
   "longitude": 67.890
 }
-
+```
 ตัวอย่างการตอบกลับ:
 - รหัสสถานะ: 200 OK
 - ตอบกลับ: "แทรกข้อมูลเรียบร้อย" (หากการแทรกข้อมูลเสร็จสมบูรณ์)
@@ -46,7 +47,9 @@ POST http://rung.ddns.net:8088/api/data
 - คำอธิบาย: ใช้ Endpoint นี้ในการกำหนดค่า LoRa parameter ต่างๆ
 
 ตัวอย่างการร้องขอ:
-GET http://rung.ddns.net:8088/api/config
+```http 
+GET http://rung.ddns.net:8050/api/config
+```
 
 ตัวอย่างการตอบกลับ:
 - รหัสสถานะ: 200 OK
@@ -58,16 +61,18 @@ GET http://rung.ddns.net:8088/api/config
 - คำอธิบาย: ใช้ Endpoint นี้ในการปรับปรุงค่า LoRa parameter ต่างๆ
 
 ตัวอย่างการร้องขอ:
-POST http://rung.ddns.net:8088/sendconfig
-
+```http 
+POST http://rung.ddns.net:8050/sendconfig
+```
 ข้อมูลที่ต้องใช้สำหรับการร้องขอ:
+```json
 {
   "syncword": 140,
   "txPower": 12,
   "freq": 920,
   "interval": 30
 }
-
+```
 ตัวอย่างการตอบกลับ:
 - รหัสสถานะ: 200 OK
 - ตอบกลับ: "แทรกข้อมูลเรียบร้อย" (หากการแทรกข้อมูลเสร็จสมบูรณ์)
@@ -80,8 +85,9 @@ POST http://rung.ddns.net:8088/sendconfig
 - คำอธิบาย: ดึงและแสดงข้อมูลทั้งหมดจากฐานข้อมูล MySQL
 
 ตัวอย่างการร้องขอ:
-GET http://rung.ddns.net:8088/api/show
-
+```http 
+GET http://rung.ddns.net:8050/api/show
+```
 ตัวอย่างการตอบกลับ:
 - รหัสสถานะ: 200 OK
 - ตอบกลับ: ข้อมูลทั้งหมดจากฐานข้อมูล MySQL ในรูปแบบ JSON
@@ -90,22 +96,22 @@ GET http://rung.ddns.net:8088/api/show
 ```json
 
 [
-{
-"Time": "2023-10-13 11:37:59",
-"Nodename": "Node 1",
-"Temperature": 25.0,
-"Humidity": 50.0,
-"Latitude": 13.736717,
-"Longitude": 100.536144
-},
-{
-"Time": "2023-10-13 11:38:00",
-"Nodename": "Node 2",
-"Temperature": 26.0,
-"Humidity": 60.0,
-"Latitude": 13.736718,
-"Longitude": 100.536145
-}
+  {  
+    "Time": "2023-10-13 11:37:59",
+    "Nodename": "Node 1",
+    "Temperature": 25.0,
+    "Humidity": 50.0,
+    "Latitude": 13.736717,
+    "Longitude": 100.536144
+  },
+  {
+    "Time": "2023-10-13 11:38:00",
+    "Nodename": "Node 2",
+    "Temperature": 26.0,
+    "Humidity": 60.0,
+    "Latitude": 13.736718,
+    "Longitude": 100.536145
+  }
 ]
 
 ```
@@ -116,8 +122,9 @@ GET http://rung.ddns.net:8088/api/show
 - คำอธิบาย: ใช้ Endpoint นี้ในการลบข้อมูลทั้งหมดออกจากฐานข้อมูล MySQL
 
 ตัวอย่างการร้องขอ:
-GET http://rung.ddns.net:8088/api/delete
-
+```http 
+GET http://rung.ddns.net:8050/api/delete
+```
 ตัวอย่างการตอบกลับ:
 - รหัสสถานะ: 200 OK
 - ตอบกลับ: "ลบข้อมูลเรียบร้อย"
@@ -128,8 +135,9 @@ GET http://rung.ddns.net:8088/api/delete
 - คำอธิบาย: สร้างและแสดงแผนที่พร้อมเครื่องหมายที่แทนจุดข้อมูลที่ตำแหน่งต่างๆ
 
 ตัวอย่างการร้องขอ:
-GET http://rung.ddns.net:8088/map
-
+```http 
+GET http://rung.ddns.net:8050/map
+```
 ตัวอย่างการตอบกลับ:
 - รหัสสถานะ: 200 OK
 - ตอบกลับ: เนื้อหา HTML ที่แสดงแผนที่พร้อมเครื่องหมายสำหรับจุดข้อมูลที่ตำแหน่งต่างๆ
